@@ -1,0 +1,82 @@
+tracking:
+  report_to: ["wandb"] 
+  wandb_project: "hallu"
+  wandb_entity: ""
+  wandb_mode: "online"
+  wandb_api_key: <YOUR_WANDB_API_KEY>
+  run_name_template: "vihallu-{date}-{run_number}"
+
+huggingface:
+  push_to_hub: true
+  repo_id: "<YOUR_HUGGINGFACE_USERNAME>/lora-hallu-{date}"
+  revision: null
+  token: <YOUR_HUGGINGFACE_API_TOKEN>
+
+output:
+  dir: "outputs/{date}"
+  run_name_template: "vihallu-{date}-{run_number}"
+
+model:
+  name_or_path: "Qwen/Qwen2.5-7B-Instruct"
+  max_seq_length: 2048
+  load_in_4bit: false
+  dtype: null
+  chat_template: 'qwen25'
+
+lora:
+  r: 16
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+  lora_alpha: 32
+  lora_dropout: 0.05
+  bias: "none"
+  use_gradient_checkpointing: true
+  random_state: 3407
+  use_rslora: false
+  loftq_config: null
+
+training:
+  per_device_train_batch_size: 32
+  per_device_eval_batch_size: 32
+  warmup_ratio: 0.03
+  num_train_epochs: 5
+  learning_rate: 1e-4
+  logging_steps: 10
+  optim: "adamw_torch"
+  weight_decay: 0.01
+  lr_scheduler_type: "cosine"
+  eval_steps: 98
+  save_steps: 196
+  seed: 42
+  save_strategy: "steps"
+  save_total_limit: 2
+  do_eval: true
+  eval_strategy: "steps"
+  dataset_num_proc: 2
+
+# early_stopping:
+#   patience: 3
+#   metric: "eval_loss"
+
+data:
+  csv_path: "<PATH_TO_YOUR_CSV_FILE>"
+  max_length: 2048
+  train_split: 0.9
+  val_split: 0.1
+  random_seed: 42
+  system_content: |
+    You are a helpful assistant trained to detect hallucinations in model responses.
+
+    You will be given three inputs:
+    1. Context: The reference text containing the factual information.
+    2. Prompt: The question or instruction given to the model.
+    3. Response: The model's answer.
+
+    Your task is to carefully compare the Response against the Context and determine whether the Response is faithful to the Context or hallucinates information.
+
+    Label definitions:
+    - faithful: The response is fully supported by the context. No hallucination.
+    - intrinsic: The response misinterprets or contradicts the context.
+    - extrinsic: The response introduces information not present in the context.
+
+    Output format: Return only keys:
+    "label": "<faithful | intrinsic | extrinsic>"
