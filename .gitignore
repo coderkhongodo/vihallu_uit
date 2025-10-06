@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Models (KHÔNG UPLOAD - Sẽ tải từ HuggingFace)
+merged_model/
+Qwen/
+lora-hallu/
+*.bin
+*.safetensors
+*.pth
+*.pt
+*.ckpt
+model/
+models/
+checkpoints/
+checkpoint-*/
+
+# Logs và Results tạm thời
+*.log
+*.txt
+debate_*/
+results_*/
+output_*/
+temp_*/
+tmp_*/
+
+# Data tạm (GIỮ data gốc trong example-training/data/)
+*.csv.tmp
+*.json.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitattributes
+
+# Huggingface cache
+.cache/
+transformers_cache/
+

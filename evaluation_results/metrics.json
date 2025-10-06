@@ -1,0 +1,60 @@
+{
+  "evaluation_criteria": {
+    "primary_metric": "macro_f1",
+    "tie_breaker": "accuracy",
+    "labels": [
+      "no",
+      "intrinsic",
+      "extrinsic"
+    ]
+  },
+  "accuracy": 0.8971428571428571,
+  "macro_f1": 0.8976630273458556,
+  "macro_precision": 0.8978260869565218,
+  "macro_recall": 0.8984114100185528,
+  "weighted_precision": 0.8979347826086957,
+  "weighted_recall": 0.8971428571428571,
+  "weighted_f1": 0.8970715582131343,
+  "per_class_metrics": {
+    "no": {
+      "precision": 0.9260869565217391,
+      "recall": 0.9508928571428571,
+      "f1": 0.9383259911894273,
+      "support": 224
+    },
+    "intrinsic": {
+      "precision": 0.9173913043478261,
+      "recall": 0.8612244897959184,
+      "f1": 0.888421052631579,
+      "support": 245
+    },
+    "extrinsic": {
+      "precision": 0.85,
+      "recall": 0.8831168831168831,
+      "f1": 0.8662420382165605,
+      "support": 231
+    }
+  },
+  "confusion_matrix": [
+    [
+      213,
+      2,
+      9
+    ],
+    [
+      7,
+      211,
+      27
+    ],
+    [
+      10,
+      17,
+      204
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "no",
+    "intrinsic",
+    "extrinsic"
+  ]
+}

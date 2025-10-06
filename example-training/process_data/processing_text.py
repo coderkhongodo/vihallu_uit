@@ -329,7 +329,11 @@ class CSVTextProcessor:
 
 
 if __name__ == "__main__":
-    default_input = Path(__file__).parent.parent / "data" / "vihallu-public-test.csv"
+    import sys
+    if len(sys.argv) > 1:
+        default_input = Path(sys.argv[1])
+    else:
+        default_input = Path(__file__).parent.parent / "data" / "vihallu-train.csv"
     processor = CSVTextProcessor(input_csv=default_input)
     processor.process()
     print(f"Wrote cleaned CSV to {processor.output_csv}")
